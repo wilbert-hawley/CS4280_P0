@@ -17,8 +17,7 @@ int main(int argc, char** argv) {
     }
     else if(argc == 2) {
         filename = argv[1];
-        string actualFileName = filename + ".sp2022";
-        file.open(actualFileName.c_str(), fstream::in);
+        file.open((filename + ".sp2022").c_str(), fstream::in);
     }
     else {
         cout << "Too many arguments. Abort.";

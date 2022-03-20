@@ -13,4 +13,4 @@ $(FINAL): $(OBJS)
 
 .PHONY: clean
 clean:
-	/bin/rm -f $(FINAL) *.o *.txt *.inorder *.preorder *.postorder
+	/bin/rm -f $(FINAL) *.o *.txt *.inorder *.preorder *.postorder output
