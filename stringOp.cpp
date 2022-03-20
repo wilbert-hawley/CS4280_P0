@@ -24,6 +24,17 @@ string strBuild(fstream &file) {
         strClean(input);
         holder += input;
     }
-    
+
     return holder;
+}
+
+string strTreeFormat(string value, char c, int level) {
+    string build = "";
+    build.append(level * 2, ' ');
+    build.append(1, c);
+    build.append(": ");
+    build.append(value);
+    build.append("\n");
+    return build;
+
 }

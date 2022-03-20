@@ -9,7 +9,7 @@ class Tree {
 private:
     Node* root;
     void insert(Node *&, Node *&);
-    void displayInOrder(Node *) const;
+    void displayInOrder(Node *, int);
 public:
     Tree()
     { root = NULL; } 

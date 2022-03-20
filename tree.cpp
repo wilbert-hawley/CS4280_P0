@@ -2,14 +2,19 @@
 #include <sstream>
 using namespace std;
 
-void Tree::displayInOrder(Node *nodePtr) const
+void Tree::displayInOrder(Node *nodePtr, int level)
 {
     if (nodePtr)
     {
-        displayInOrder(nodePtr->left);
-        cout << "Current node = " << nodePtr->value << endl;
-        displayInOrder(nodePtr->middle);
-        displayInOrder(nodePtr->right);
+
+        displayInOrder(nodePtr->left, level + 1);
+
+        string complete = strTreeFormat(nodePtr->value, getLast(nodePtr), level);
+        cout << complete;
+
+        //cout << level << " " << getLast(nodePtr) << ": " << nodePtr->value << endl;
+        displayInOrder(nodePtr->middle, level + 1);
+        displayInOrder(nodePtr->right, level + 1);
     }
 }
 
@@ -39,56 +44,21 @@ void Tree::insertNode(string str) {
 }
 
 void Tree::buildTree(fstream& file) {
-    
-    // if flag == true then read from standard input
-    // if flag == false then read from file
-    // both go in temporary file
-
-    /*fstream temp;
-    temp.open("temp.txt", fstream::out);
-    //strClean("hey");
-    string input;
-    if (flag) {
-        printf("Please enter DONE when finished or it will read to the end of file:\n");
-        while(getline(cin, input)) {
-            if(input == "DONE")
-               break; 
-            temp << input;
-        }
-    }
-    else {
-        cout << "Program will read in from file provided.\n";
-        while(getline(file, input)) {
-            if(input == "DONE")
-               break;
-            temp << input;
-        }      
-    }*/
-
-
-
-    /*string holder = "";
-    string input;
-
-    while(getline(file, input)) {
-        strClean(input);
-        holder += input;
-    }*/
 
     string holder = strBuild(file);
-    string input;
 
     stringstream stream(holder);
+
+    string input;
 
     while(getline(stream, input, ' ')) {
         insertNode(input);
     }
-
-
-    cout << "Holder = " << holder;
     
     cout << "buildTree is done running\n";
 }
+
+
 void Tree::printInorder(string output) {
     string final("./");
     final.append(output);
@@ -99,11 +69,16 @@ void Tree::printInorder(string output) {
         cout << "no";
         return;
     }
-    displayInOrder(root);
+    displayInOrder(root, 0);
+    file.close();
 }
+
+
 void Tree::printPreorder(string) {
 	cout << "printPreorder is working\n";
 }
+
+
 void Tree::printPostorder(string) {
 	cout << "printPostorder is working\n";
 }
