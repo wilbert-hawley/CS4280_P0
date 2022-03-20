@@ -9,7 +9,9 @@ class Tree {
 private:
     Node* root;
     void insert(Node *&, Node *&);
-    void displayInOrder(Node *, int);
+    void displayInOrder(Node*, int, fstream&);
+    void displayPreOrder(Node*, int, fstream&);
+    void displayPostOrder(Node*, int, fstream&);
 public:
     Tree()
     { root = NULL; } 

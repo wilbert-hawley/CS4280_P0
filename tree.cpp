@@ -2,19 +2,41 @@
 #include <sstream>
 using namespace std;
 
-void Tree::displayInOrder(Node *nodePtr, int level)
+void Tree::displayInOrder(Node *nodePtr, int level, fstream& file)
 {
     if (nodePtr)
     {
-
-        displayInOrder(nodePtr->left, level + 1);
+        displayInOrder(nodePtr->left, level + 1, file);
 
         string complete = strTreeFormat(nodePtr->value, getLast(nodePtr), level);
-        cout << complete;
+        file << complete;
 
-        //cout << level << " " << getLast(nodePtr) << ": " << nodePtr->value << endl;
-        displayInOrder(nodePtr->middle, level + 1);
-        displayInOrder(nodePtr->right, level + 1);
+        displayInOrder(nodePtr->middle, level + 1, file);
+        displayInOrder(nodePtr->right, level + 1, file);
+    }
+}
+
+void Tree::displayPreOrder(Node *nodePtr, int level, fstream& file)
+{
+    if (nodePtr)
+    {
+        string complete = strTreeFormat(nodePtr->value, getLast(nodePtr), level);
+        file << complete;
+        displayPreOrder(nodePtr->left, level + 1, file);
+        displayInOrder(nodePtr->middle, level + 1, file);
+        displayPreOrder(nodePtr->right, level + 1, file);
+    }
+}
+
+void Tree::displayPostOrder(Node *nodePtr, int level, fstream& file)
+{
+    if (nodePtr)
+    {
+        displayPostOrder(nodePtr->left, level + 1, file);
+        displayInOrder(nodePtr->middle, level + 1, file);
+        displayPostOrder(nodePtr->right, level + 1, file);
+        string complete = strTreeFormat(nodePtr->value, getLast(nodePtr), level);
+        file << complete;
     }
 }
 
@@ -69,16 +91,36 @@ void Tree::printInorder(string output) {
         cout << "no";
         return;
     }
-    displayInOrder(root, 0);
+    displayInOrder(root, 0, file);
     file.close();
 }
 
 
-void Tree::printPreorder(string) {
-	cout << "printPreorder is working\n";
+void Tree::printPreorder(string output) {
+    string final("./");
+    final.append(output);
+    final.append(".preorder");
+    fstream file;
+    file.open(final.c_str(), ios_base::out);
+    if(!file) {
+        cout << "no";
+        return;
+    }
+    displayPreOrder(root, 0, file);
+    file.close();
 }
 
 
-void Tree::printPostorder(string) {
-	cout << "printPostorder is working\n";
+void Tree::printPostorder(string output) {
+    string final("./");
+    final.append(output);
+    final.append(".postorder");
+    fstream file;
+    file.open(final.c_str(), ios_base::out);
+    if(!file) {
+        cout << "no";
+        return;
+    }
+    displayPostOrder(root, 0, file);
+    file.close();
 }

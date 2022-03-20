@@ -11,18 +11,20 @@ int main(int argc, char** argv) {
     string filename;
 
     if(argc == 1) {
-        filename = "temp.txt";
+        filename = "output";
         buildFile(file, filename);
+        file.open(filename.c_str(), fstream::in);
     }
     else if(argc == 2) {
         filename = argv[1];
+        string actualFileName = filename + ".sp2022";
+        file.open(actualFileName.c_str(), fstream::in);
     }
     else {
         cout << "Too many arguments. Abort.";
         return 1;
     }
 
-    file.open(filename.c_str(), fstream::in);
 
     if(!file) {
         cout << "file failed to open\n";
@@ -32,7 +34,9 @@ int main(int argc, char** argv) {
     Tree tree;
 
     tree.buildTree(file);
-    tree.printInorder("hey");
+    tree.printInorder(filename);
+    tree.printPreorder(filename);
+    tree.printPostorder(filename);
 
     cout << "Made it back to main\n";
 
