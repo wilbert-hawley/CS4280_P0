@@ -9,6 +9,7 @@ class Tree {
 private:
     Node* root;
     void insert(Node *&, Node *&);
+    void displayInOrder(Node *) const;
 public:
     Tree()
     { root = NULL; } 
@@ -17,7 +18,7 @@ public:
 
     void insertNode(string);
 
-    void buildTree(fstream&, string);
+    void buildTree(fstream&);
     void printInorder(string);
     void printPreorder(string);
     void printPostorder(string);

@@ -1,5 +1,17 @@
 #include "tree.h"
+#include <sstream>
 using namespace std;
+
+void Tree::displayInOrder(Node *nodePtr) const
+{
+    if (nodePtr)
+    {
+        displayInOrder(nodePtr->left);
+        cout << "Current node = " << nodePtr->value << endl;
+        displayInOrder(nodePtr->middle);
+        displayInOrder(nodePtr->right);
+    }
+}
 
 char Tree::getLast(Node *&nodePtr) {
     return nodePtr->value[nodePtr->value.length() - 1];
@@ -26,7 +38,7 @@ void Tree::insertNode(string str) {
     insert(root, newNode);
 }
 
-void Tree::buildTree(fstream& file, string filename) {
+void Tree::buildTree(fstream& file) {
     
     // if flag == true then read from standard input
     // if flag == false then read from file
@@ -53,22 +65,41 @@ void Tree::buildTree(fstream& file, string filename) {
         }      
     }*/
 
-    
 
-    string holder = "";
+
+    /*string holder = "";
     string input;
 
     while(getline(file, input)) {
-        cout << "hey";
+        strClean(input);
         holder += input;
+    }*/
+
+    string holder = strBuild(file);
+    string input;
+
+    stringstream stream(holder);
+
+    while(getline(stream, input, ' ')) {
+        insertNode(input);
     }
+
 
     cout << "Holder = " << holder;
     
     cout << "buildTree is done running\n";
 }
-void Tree::printInorder(string) {
-	cout << "printInorder is working\n";
+void Tree::printInorder(string output) {
+    string final("./");
+    final.append(output);
+    final.append(".inorder");
+    fstream file;
+    file.open(final.c_str(), ios_base::out);
+    if(!file) {
+        cout << "no";
+        return;
+    }
+    displayInOrder(root);
 }
 void Tree::printPreorder(string) {
 	cout << "printPreorder is working\n";

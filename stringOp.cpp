@@ -7,7 +7,23 @@ void strClean(string& str) {
             str[i] = ' ';
     }
 
+    while(isspace(str[0]))
+        str.erase(0, 1);
+
     while(isspace(str[str.length() - 1]))
         str.erase((str.length() - 1), 1);
 
+    str.append(" ");
+}
+
+string strBuild(fstream &file) {
+    string holder = "";
+    string input;
+
+    while(getline(file, input)) {
+        strClean(input);
+        holder += input;
+    }
+    
+    return holder;
 }

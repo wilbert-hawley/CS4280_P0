@@ -29,13 +29,10 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    /*string temp;
-    getline(file,temp);
-    cout << "Temp = " << temp << endl;*/
-
     Tree tree;
 
-    tree.buildTree(file, filename);
+    tree.buildTree(file);
+    tree.printInorder("hey");
 
     cout << "Made it back to main\n";
 
