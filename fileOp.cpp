@@ -9,8 +9,10 @@ void buildFile(fstream &fi, string str) {
     }
     cout << "Reading in from std and creating temporary file:\n";
     string temp;
+
     while(getline(cin, temp)) {
         fi << temp.append("\n");
     }
+
     fi.close();
 }

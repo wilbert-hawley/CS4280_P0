@@ -37,8 +37,6 @@ int main(int argc, char** argv) {
     tree.printPreorder(filename);
     tree.printPostorder(filename);
 
-    cout << "Made it back to main\n";
-
     file.close();
 
     return 0;

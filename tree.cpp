@@ -7,10 +7,8 @@ void Tree::displayInOrder(Node *nodePtr, int level, fstream& file)
     if (nodePtr)
     {
         displayInOrder(nodePtr->left, level + 1, file);
-
         string complete = strTreeFormat(nodePtr->value, getLast(nodePtr), level);
         file << complete;
-
         displayInOrder(nodePtr->middle, level + 1, file);
         displayInOrder(nodePtr->right, level + 1, file);
     }
@@ -74,10 +72,9 @@ void Tree::buildTree(fstream& file) {
     string input;
 
     while(getline(stream, input, ' ')) {
-        insertNode(input);
+        if(inputCheck(input))
+            insertNode(input);
     }
-    
-    cout << "buildTree is done running\n";
 }
 
 
