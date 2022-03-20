@@ -6,29 +6,27 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
-
     fstream file;
     string filename;
 
     if(argc == 1) {
         filename = "output";
-        buildFile(file, filename);
-        file.open(filename.c_str(), fstream::in);
+        buildFile(file, filename + ".sp2022");
     }
     else if(argc == 2) {
         filename = argv[1];
-        file.open((filename + ".sp2022").c_str(), fstream::in);
     }
     else {
-        cout << "Too many arguments. Abort.";
+        cout << "P0: main.cpp: Too many arguments. Abort.\n";
         return 1;
     }
 
+    file.open((filename + ".sp2022").c_str(), fstream::in);
 
-    if(!file) {
-        cout << "file failed to open\n";
-        return 1;
-    }
+    if(!file)
+        errorMessage("P0: main.cpp: ", filename + ".sp2022 ", "failed to open");
+
+    emptyFileTest(file, filename + ".sp2022");
 
     Tree tree;
 

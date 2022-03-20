@@ -51,3 +51,8 @@ bool inputCheck(string str) {
         return false;
     return true;
 }
+
+void errorMessage(string location, string filename, string message) {
+    cout << location << filename << message << endl;
+    exit(1);
+}

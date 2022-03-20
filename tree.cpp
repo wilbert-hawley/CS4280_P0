@@ -7,8 +7,7 @@ void Tree::displayInOrder(Node *nodePtr, int level, fstream& file)
     if (nodePtr)
     {
         displayInOrder(nodePtr->left, level + 1, file);
-        string complete = strTreeFormat(nodePtr->value, getLast(nodePtr), level);
-        file << complete;
+        file << strTreeFormat(nodePtr->value, getLast(nodePtr), level);;
         displayInOrder(nodePtr->middle, level + 1, file);
         displayInOrder(nodePtr->right, level + 1, file);
     }
@@ -18,8 +17,7 @@ void Tree::displayPreOrder(Node *nodePtr, int level, fstream& file)
 {
     if (nodePtr)
     {
-        string complete = strTreeFormat(nodePtr->value, getLast(nodePtr), level);
-        file << complete;
+        file << strTreeFormat(nodePtr->value, getLast(nodePtr), level);
         displayPreOrder(nodePtr->left, level + 1, file);
         displayInOrder(nodePtr->middle, level + 1, file);
         displayPreOrder(nodePtr->right, level + 1, file);
@@ -33,8 +31,7 @@ void Tree::displayPostOrder(Node *nodePtr, int level, fstream& file)
         displayPostOrder(nodePtr->left, level + 1, file);
         displayInOrder(nodePtr->middle, level + 1, file);
         displayPostOrder(nodePtr->right, level + 1, file);
-        string complete = strTreeFormat(nodePtr->value, getLast(nodePtr), level);
-        file << complete;
+        file << strTreeFormat(nodePtr->value, getLast(nodePtr), level);
     }
 }
 
@@ -79,45 +76,39 @@ void Tree::buildTree(fstream& file) {
 
 
 void Tree::printInorder(string output) {
-    string final("./");
-    final.append(output);
-    final.append(".inorder");
+    string final("./" + output + ".inorder");
+
     fstream file;
     file.open(final.c_str(), ios_base::out);
-    if(!file) {
-        cout << "no";
-        return;
-    }
+    if(!file)
+        errorMessage("P0: tree.cpp: ", final, " failed to open");
+
     displayInOrder(root, 0, file);
     file.close();
 }
 
 
 void Tree::printPreorder(string output) {
-    string final("./");
-    final.append(output);
-    final.append(".preorder");
+    string final("./" + output + ".preorder");
+
     fstream file;
     file.open(final.c_str(), ios_base::out);
-    if(!file) {
-        cout << "no";
-        return;
-    }
+    if(!file)
+        errorMessage("P0: tree.cpp: ", final, " failed to open");
+
     displayPreOrder(root, 0, file);
     file.close();
 }
 
 
 void Tree::printPostorder(string output) {
-    string final("./");
-    final.append(output);
-    final.append(".postorder");
+    string final("./" + output + ".postorder");
+
     fstream file;
     file.open(final.c_str(), ios_base::out);
-    if(!file) {
-        cout << "no";
-        return;
-    }
+    if(!file)
+        errorMessage("P0: tree.cpp: ", final, " failed to open");
+
     displayPostOrder(root, 0, file);
     file.close();
 }
