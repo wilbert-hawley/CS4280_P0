@@ -1,5 +1,5 @@
-#ifndef CS4280_P0_FILEOP__H
-#define CS4280_P0_FILEOP_H
+#ifndef FILEOP__H
+#define FILEOP_H
 
 #include <iostream>
 #include <fstream>

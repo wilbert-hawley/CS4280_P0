@@ -6,8 +6,8 @@ void buildFile(fstream &fi, string str) {
     if(!fi) {
         errorMessage("P0: fileOp.cpp: ", str, " failed to open");
     }
-    cout << "Reading in from std and creating temporary file. If typing, use ctrl-D to simulate"
-         <<  " end of file.\n";
+    cout << "Reading in from std and creating temporary file. If typing, use ctrl-D on it's "
+         << "own line to simulate end of file.\n";
     string temp;
 
     while(getline(cin, temp)) {

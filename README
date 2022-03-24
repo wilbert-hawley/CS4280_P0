@@ -1,0 +1,21 @@
+Wilbert Hawley
+CS 4280
+Spring 2022
+Project 0
+
+This project goes through file and pulls all the strings into a ternary tree by the last letter of the word. Words which
+share the same last letter go down the middle node. To run the program use the following command:
+
+./P0 [file]
+
+File is an optional command. If you don't provide a file (which has the presumed extension ".sp2022"), then the program
+will read in from standard input - whether you are typing or it is reading indirectly from a supplied file. If you don't
+provide a file, the output will be in three files with the name "output" followed by three suffixes.
+
+To build the project, run the following command:
+
+make
+
+To clean the project, which I would recommend between each round, run the following command:
+
+make clean
